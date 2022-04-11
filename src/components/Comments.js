@@ -104,7 +104,6 @@ function Comments() {
           return response.json();
         })
         .then((json) => {
-          console.log(json);
           setResult((prev) => ({
             ...prev,
             postEdited: json,

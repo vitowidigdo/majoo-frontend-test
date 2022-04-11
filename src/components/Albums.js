@@ -128,7 +128,6 @@ function Albums() {
                     {
                       // album.id === photos?.[0]?.albumId &&
                       photos?.map((photo) => {
-                        // console.log(album);
                         return (
                           <a href={`${photo?.url}`} key={photo.id}>
                             <img

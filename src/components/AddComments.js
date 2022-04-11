@@ -52,7 +52,6 @@ function AddComments(props) {
           return response.json();
         })
         .then((json) => {
-          console.log(json);
           resetForm();
           setResult((prev) => ({
             ...prev,

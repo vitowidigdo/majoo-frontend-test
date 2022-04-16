@@ -26,14 +26,26 @@ function AddTasks(props) {
     createdAt: "",
   });
 
+  React.useEffect(() => {
+    setTaskValue({
+      id: "",
+      title: "",
+      description: "",
+      status: "",
+      createdAt: "",
+    });
+  }, [add.modal]);
+
   function handleSubmit() {
-    updateTask(taskValue);
+    const updateObj = [...thisState.task, taskValue];
+    updateTask(updateObj);
     setResult((prev) => ({
       ...prev,
       resultText: "Success Edit Tasks!",
       modal: true,
       taskEdited: thisState?.task,
     }));
+    setAdd((prev) => ({ ...prev, modal: false }));
   }
 
   async function resetForm() {
@@ -47,8 +59,7 @@ function AddTasks(props) {
   }
 
   function handleIdChange(event) {
-    console.log(event.target);
-    setTaskValue((prev) => ({ ...prev, id: event.target.value }));
+    setTaskValue((prev) => ({ ...prev, id: Number(event.target.value) }));
   }
 
   function handleTitleChange(event) {
@@ -60,13 +71,12 @@ function AddTasks(props) {
   }
 
   function handleStatusChange(event) {
-    setTaskValue((prev) => ({ ...prev, status: event.target.value }));
+    setTaskValue((prev) => ({ ...prev, status: Number(event.target.value) }));
   }
-  const handleClose = () => setResult((prev) => ({ ...prev, modal: false }));
 
   return (
     <>
-      <Modal show={add.modal} onHide={handleClose} className="">
+      <Modal show={add.modal} onHide={handleCloseAdd} className="">
         <Modal.Header closeButton>
           <Modal.Title>Edit Tasks</Modal.Title>
         </Modal.Header>
@@ -142,7 +152,7 @@ function AddTasks(props) {
           <Button variant="danger" onClick={() => resetForm()}>
             Cancel
           </Button>
-          <Button variant="secondary" onClick={handleClose}>
+          <Button variant="secondary" onClick={handleCloseAdd}>
             Close
           </Button>
         </Modal.Footer>

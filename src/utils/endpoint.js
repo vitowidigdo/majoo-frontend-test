@@ -1,18 +1,8 @@
-export const api = `https://jsonplaceholder.typicode.com`;
+export const api = `https://virtserver.swaggerhub.com/hanabyan/todo/1.0.0/to-do-list`;
 
 const endpoint = {
-  // Posts
-  posts: `${api}/posts`,
-
-  comments: `${api}/comments`,
-
-  albums: `${api}/albums`,
-
-  photos: `${api}/photos`,
-
-  todos: `${api}/todos`,
-
-  users: `${api}/users`,
+  // Current
+  api: `${api}`,
 };
 
 export default endpoint;

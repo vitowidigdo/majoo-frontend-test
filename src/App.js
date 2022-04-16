@@ -3,12 +3,8 @@ import { Routes, Route, useLocation } from "react-router-dom";
 
 import Home from "./pages/Home";
 
-import Posts from "components/Posts";
-import Albums from "components/Albums";
-
-import { PostsProvider } from "./context/posts";
+import { TasksProvider } from "./context/tasks";
 import PageNotFound from "./pages/Home";
-import Comments from "components/Comments";
 
 function App() {
   const location = useLocation();
@@ -21,22 +17,13 @@ function App() {
 
   return (
     <>
-      <PostsProvider>
+      <TasksProvider>
         <Routes>
           <Route exact path="/" element={<Home />}></Route>
 
-          <Route exact path="/posts/" element={<Posts />}></Route>
-          <Route exact path="/posts/:id" element={<Posts />}></Route>
-
-          <Route exact path="/albums/" element={<Albums />}></Route>
-          <Route exact path="/albums/:id" element={<Albums />}></Route>
-
-          <Route exact path="/comments/" element={<Comments />}></Route>
-          <Route exact path="/comments/:id" element={<Comments />}></Route>
-
           <Route exact path="*" element={<PageNotFound />}></Route>
         </Routes>
-      </PostsProvider>
+      </TasksProvider>
     </>
   );
 }

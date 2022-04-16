@@ -1,9 +1,9 @@
 import React, { useReducer } from "react";
 
-const PostsContext = React.createContext([[], () => {}]);
+const TasksContext = React.createContext([[], () => {}]);
 const initialState = {
   posts: [],
-  users: [],
+  task: [],
   comments: [],
 };
 
@@ -14,10 +14,10 @@ let itemsReducer = (thisState = initialState, action) => {
         ...thisState,
         posts: action.payload.data,
       };
-    case "USERS":
+    case "TASK":
       return {
         ...thisState,
-        users: action.payload.data,
+        task: action.payload.data,
       };
     case "COMMENTS":
       return {
@@ -29,7 +29,7 @@ let itemsReducer = (thisState = initialState, action) => {
   }
 };
 
-function PostsProvider(props) {
+function TasksProvider(props) {
   const [thisState, dispatch] = useReducer(itemsReducer, initialState);
 
   const updatePosts = (posts) => {
@@ -41,11 +41,11 @@ function PostsProvider(props) {
     });
   };
 
-  const updateUsers = (users) => {
+  const updateTask = (task) => {
     dispatch({
-      type: "USERS",
+      type: "TASK",
       payload: {
-        data: users,
+        data: task,
       },
     });
   };
@@ -60,18 +60,18 @@ function PostsProvider(props) {
   };
 
   return (
-    <PostsContext.Provider
+    <TasksContext.Provider
       value={{
         thisState,
         dispatch,
         updatePosts,
-        updateUsers,
+        updateTask,
         updateComments,
       }}
     >
       {props.children}
-    </PostsContext.Provider>
+    </TasksContext.Provider>
   );
 }
 
-export { PostsContext, PostsProvider };
+export { TasksContext, TasksProvider };
